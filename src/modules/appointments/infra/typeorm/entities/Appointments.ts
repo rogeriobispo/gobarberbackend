@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from './User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('appointments')
 class Appointment {
@@ -23,7 +23,7 @@ class Appointment {
   provider: User;
 
   @Column('time with time zone')
-  date: Date;
+  schedule_date: Date;
 
   @CreateDateColumn()
   created_at: Date;

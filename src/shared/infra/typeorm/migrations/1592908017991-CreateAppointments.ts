@@ -19,7 +19,7 @@ export default class CreateAppointments1592908017991
             type: 'varchar',
           },
           {
-            name: 'date',
+            name: 'schedule_date',
             type: 'timestamp with time zone',
           },
           {

@@ -38,7 +38,7 @@ export default class AlterProviderFieldToProviderId1593037516162
       'appointments',
       new TableColumn({
         name: 'provider',
-        type: 'string',
+        type: 'varchar',
       }),
     );
   }
