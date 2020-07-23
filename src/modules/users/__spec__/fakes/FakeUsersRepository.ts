@@ -3,7 +3,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import IUserRepository  from '@modules/users/repositories/IUserRepository'
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO'
 
-class UsersRespository implements IUserRepository{
+class FakeUsersRespository implements IUserRepository{
   private users: User[] = []
   async update(user: User): Promise<User> {
     const findIndex = this.users.findIndex(findUser => findUser.id === user.id)
@@ -33,4 +33,4 @@ class UsersRespository implements IUserRepository{
 
 }
 
-export default UsersRespository;
+export default FakeUsersRespository;
