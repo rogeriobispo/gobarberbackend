@@ -9,7 +9,7 @@ import IUserTokenRepository from '../repositories/IUserTokensRepository'
 @injectable()
 class SendForgotPasswordEmailService {
   constructor(
-    @inject('UserRepository')
+    @inject('UsersRepository')
     private UserRepository: IUserRepository,
 
     @inject('MailProvider')
@@ -24,9 +24,9 @@ class SendForgotPasswordEmailService {
 
     if(!user) throw new AppError('User does not exists')
 
-    await this.userTokenRepository.generate(user.id)
+    const { token } = await this.userTokenRepository.generate(user.id)
 
-    this.mailProvider.sendMail(email, 'Pedido de recuperação de senha recebido')
+    this.mailProvider.sendMail(email, `Pedido de recuperação de senha recebido ${token}`)
   }
 }
 
