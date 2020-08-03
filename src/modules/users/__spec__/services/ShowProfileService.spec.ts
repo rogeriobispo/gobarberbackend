@@ -34,7 +34,6 @@ describe('ShowUserProfileService', () => {
         user_id: 'userdoesnotexists'
       })).rejects.toBeInstanceOf(AppError)
 
-
     })
   })
 })
