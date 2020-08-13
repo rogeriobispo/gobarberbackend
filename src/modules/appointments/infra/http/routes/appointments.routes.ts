@@ -1,14 +1,11 @@
 import { Router } from 'express';
 import AppointmentsController from '../controllers/AppointmentsController'
+import ProviderAppointmentsController from '../controllers/ProviderAppointmentsController'
 
 
 const appointmentsRouter = Router();
 
-// appointmentsRouter.get('/', async (req, res) => {
-//   const appointments = await appointmentRepository.find();
-//   res.json(appointments);
-// });
-
 appointmentsRouter.post('/', AppointmentsController.create);
+appointmentsRouter.post('/me', ProviderAppointmentsController.index);
 
 export default appointmentsRouter;
