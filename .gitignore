@@ -1,6 +1,8 @@
 .idea/
 .vscode/
 node_modules/
+.env
+ormconfig.json
 build/
 temp/*
 !tmp/.gitkeep
