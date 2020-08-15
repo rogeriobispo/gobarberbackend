@@ -7,6 +7,8 @@ import {
 } from 'typeorm';
 
 import { Exclude, Expose } from 'class-transformer'
+import uploadConfig from '@config/upload'
+
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
@@ -19,7 +21,7 @@ class User {
   email: string;
 
   @Column('varchar')
-  @Exclude(s)
+  @Exclude()
   password: string;
 
   @Column('varchar')
@@ -33,9 +35,18 @@ class User {
 
   @Expose({ name: 'avatar_url' })
     getAvatarUrl(): string | null{
-    return  this.avatar
-      ? `${process.env.APP_API_URL}/files/${this.avatar}`
-      : null
+      if(!this.avatar) return null
+
+
+      switch(uploadConfig.driver){
+        case 'disk':
+          return `${process.env.APP_API_URL}/files/${this.avatar}`
+        case 's3':
+          return `url do s3`
+        default:
+         return null;
+      }
+
   }
 }
 export default User;

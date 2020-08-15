@@ -8,7 +8,7 @@ import uploadConfig from '@config/upload';
 import ensureAuthenticated from '@modules/users/infra/http/midleware/ensureAuthenticated';
 
 const userRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 
 
 userRouter.post('/', celebrate({
