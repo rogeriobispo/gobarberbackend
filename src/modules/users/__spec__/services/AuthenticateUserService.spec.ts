@@ -1,28 +1,23 @@
 import "reflect-metadata"
 import AuthenticateUserService from '../../services/AuthenticateUserService'
 import FakeHashProvider from '../fakes/FakeHashProvider'
-import CreateUserService from '../../services/CreateUserService'
 import FakeUsersRepository from '../fakes/FakeUsersRepository'
 import AppError from '@shared/errors/AppError'
 
 let fakeUsersRepository: FakeUsersRepository
 let fakeHashProvider: FakeHashProvider
 let authenticateUser: AuthenticateUserService
-let createUser: CreateUserService
-
 
 describe('AuthenticateUserService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
     fakeHashProvider = new FakeHashProvider()
     authenticateUser = new AuthenticateUserService(fakeUsersRepository, fakeHashProvider)
-    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider)
-
   })
   describe('#execute', () => {
     it('should be able to authenticate', async () => {
 
-      const user = await createUser.execute({
+      const user = await fakeUsersRepository.create({
         name: 'rogerio',
         email: 'rbispo@rbispo.com',
         password: '123456'
@@ -46,7 +41,7 @@ describe('AuthenticateUserService', () => {
 
     it('should not be able to autenticate with password is wrong', async () => {
 
-      await createUser.execute({
+      await fakeUsersRepository.create({
         name: 'rogerio',
         email: 'rbispo@rbispo.com',
         password: '123456'

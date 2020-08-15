@@ -1,14 +1,18 @@
 import FakeUsersRepository from '@modules/users/__spec__/fakes/FakeUsersRepository'
 import ListProfileService from '../../services/ListProviderService'
-import AppError from '@shared/errors/AppError'
+import FakeCacheProvider from '../fakes/FakeCacheProvider'
+
 
 let fakeUsersRepository: FakeUsersRepository
+let fakeCacheProvider: FakeCacheProvider
 let listProfileService: ListProfileService
 describe('ShowUserProfileService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
+    fakeCacheProvider = new FakeCacheProvider()
     listProfileService = new ListProfileService(
       fakeUsersRepository,
+      fakeCacheProvider
     )
   })
   describe('#execute', () => {
