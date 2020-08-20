@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import ListProviderAppointmentsServices from '@modules/appointments/services/ListProviderAppointmentsServices';
+import { classToClass } from 'class-transformer';
 
 class ProviderAppointmentsController {
   public async index(req: Request, res: Response): Promise<Response> {
