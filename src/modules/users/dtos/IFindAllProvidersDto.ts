@@ -1,5 +1,5 @@
 interface IFindAllProviderDTO {
-  except_user_id?: string
+  except_user_id?: string;
 }
 
-export default IFindAllProviderDTO
+export default IFindAllProviderDTO;

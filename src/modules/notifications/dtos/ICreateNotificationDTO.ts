@@ -1,6 +1,6 @@
 interface ICreateNotificationDTO {
-  content: string
-  recipient_id: string
+  content: string;
+  recipient_id: string;
 }
 
-export default ICreateNotificationDTO
+export default ICreateNotificationDTO;

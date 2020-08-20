@@ -1,28 +1,29 @@
-import IUserTokensRepository from '../../repositories/IUserTokensRepository'
-import UserToken from '../../infra/typeorm/entities/UserToken'
-import { uuid } from 'uuidv4'
+import { uuid } from 'uuidv4';
+import IUserTokensRepository from '../../repositories/IUserTokensRepository';
+import UserToken from '../../infra/typeorm/entities/UserToken';
+
 class FakeUserTokensRespository implements IUserTokensRepository {
-  private userTokens: UserToken[] = []
+  private userTokens: UserToken[] = [];
 
   public async findByToken(token: string): Promise<UserToken | undefined> {
-    return this.userTokens.find(userToken => userToken.token === token )
-   }
+    return this.userTokens.find(userToken => userToken.token === token);
+  }
 
   public async generate(user_id: string): Promise<UserToken> {
-    const userToken = new UserToken()
+    const userToken = new UserToken();
 
     Object.assign(userToken, {
       id: uuid(),
       token: uuid(),
       user_id,
       created_at: new Date(),
-      updated_at: new Date()
-    })
+      updated_at: new Date(),
+    });
 
-    this.userTokens.push(userToken)
+    this.userTokens.push(userToken);
 
-    return userToken
+    return userToken;
   }
 }
 
-export default FakeUserTokensRespository
+export default FakeUserTokensRespository;

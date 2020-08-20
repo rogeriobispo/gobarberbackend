@@ -1,39 +1,37 @@
-import FakeUsersRepository from '../fakes/FakeUsersRepository'
-import ShowProfileService from '../../services/ShowProfileService'
-import AppError from '@shared/errors/AppError'
+import AppError from '@shared/errors/AppError';
+import FakeUsersRepository from '../fakes/FakeUsersRepository';
+import ShowProfileService from '../../services/ShowProfileService';
 
-let fakeUsersRepository: FakeUsersRepository
-let showProfileService: ShowProfileService
+let fakeUsersRepository: FakeUsersRepository;
+let showProfileService: ShowProfileService;
 
 describe('ShowUserProfileService', () => {
   beforeEach(() => {
-    fakeUsersRepository = new FakeUsersRepository()
-    showProfileService = new ShowProfileService(
-      fakeUsersRepository,
-    )
-  })
+    fakeUsersRepository = new FakeUsersRepository();
+    showProfileService = new ShowProfileService(fakeUsersRepository);
+  });
   describe('#execute', () => {
     it('should be able to show an user', async () => {
       const user = await fakeUsersRepository.create({
         name: 'John Doe',
         email: 'johondoe@example.com',
-        password: '123456'
-      })
+        password: '123456',
+      });
 
       const userReturned = await showProfileService.execute({
-        user_id: user.id
-      })
+        user_id: user.id,
+      });
 
-      expect(userReturned.name).toBe('John Doe')
-      expect(userReturned.email).toBe('johondoe@example.com')
-    })
+      expect(userReturned.name).toBe('John Doe');
+      expect(userReturned.email).toBe('johondoe@example.com');
+    });
 
     it('should throw an error if user does not exist', async () => {
-
-      await expect(showProfileService.execute({
-        user_id: 'userdoesnotexists'
-      })).rejects.toBeInstanceOf(AppError)
-
-    })
-  })
-})
+      await expect(
+        showProfileService.execute({
+          user_id: 'userdoesnotexists',
+        }),
+      ).rejects.toBeInstanceOf(AppError);
+    });
+  });
+});
