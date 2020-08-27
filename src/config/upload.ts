@@ -6,18 +6,18 @@ const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 const uploadFoader = path.resolve(__dirname, '..', '..', 'tmp', 'upload');
 
 interface IUploadConfig {
-  driver: 's3' | 'disk'
-  tmpFolder: string
-  uploadFolder: string
+  driver: 's3' | 'disk';
+  tmpFolder: string;
+  uploadFolder: string;
   config: {
-    disk: {}
+    disk: {};
     aws: {
-      bucket: string
-    }
-  }
+      bucket: string;
+    };
+  };
   multer: {
-    storage: StorageEngine
-  }
+    storage: StorageEngine;
+  };
 }
 
 export default {
@@ -37,7 +37,7 @@ export default {
   config: {
     disk: {},
     aws: {
-      bucket: 'go-barber-2'
-    }
-  }
-} as IUploadConfig
+      bucket: 'go-barber-2',
+    },
+  },
+} as IUploadConfig;

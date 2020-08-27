@@ -1,6 +1,4 @@
-import './StorageProviders'
-import './MailTemplateProvider'
-import './MailProvider'
-import './CacheProvider'
-
-
+import './StorageProviders';
+import './MailTemplateProvider';
+import './MailProvider';
+import './CacheProvider';
